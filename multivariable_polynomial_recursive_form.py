@@ -1,4 +1,5 @@
 from sympy.parsing.sympy_parser import parse_expr
+from sympy import *
 from sympy.parsing.sympy_parser import standard_transformations,\
 implicit_multiplication_application
 from sympy import degree
@@ -68,6 +69,7 @@ P = P.replace('−','-')
 regular_expression = parse_expr(P, transformations=transformations).args
 # regular_expression = (sympify(P, evaluate=False)).args
 for r in regular_expression:
+    print(expand(r))
     # print(degree(r,gen = Symbol('z')))
-    print(r.coeff(Symbol('z')**3))
+    # print(r.coeff(Symbol('z')**3))
 print(regular_expression)
