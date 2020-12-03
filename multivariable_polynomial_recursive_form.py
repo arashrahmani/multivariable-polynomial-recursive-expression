@@ -68,5 +68,6 @@ P = P.replace('−','-')
 regular_expression = parse_expr(P, transformations=transformations).args
 # regular_expression = (sympify(P, evaluate=False)).args
 for r in regular_expression:
-    print(degree(r,gen = Symbol('z')))
+    # print(degree(r,gen = Symbol('z')))
+    print(r.coeff(Symbol('z')**3))
 print(regular_expression)
