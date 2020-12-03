@@ -66,10 +66,9 @@ transformations = (standard_transformations +
 P = "3 + x^2 + xyz(xy + y − z) + z^3(1 − 3x)"
 P = P.replace('^','**')
 P = P.replace('−','-')
-regular_expression = parse_expr(P, transformations=transformations).args
-# regular_expression = (sympify(P, evaluate=False)).args
+regular_expression = parse_expr(P, transformations=transformations)
+regular_expression = expand(regular_expression)
 for r in regular_expression:
-    print(expand(r))
-    # print(degree(r,gen = Symbol('z')))
-    # print(r.coeff(Symbol('z')**3))
-print(regular_expression)
+    print(degree(r,gen = Symbol('z')))
+    print(r.coeff(Symbol('z')**3))
+print("regular expression",regular_expression)
