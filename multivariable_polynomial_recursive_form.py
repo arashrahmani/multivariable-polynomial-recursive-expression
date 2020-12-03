@@ -1,5 +1,10 @@
+from sympy.parsing.sympy_parser import parse_expr
+from sympy.parsing.sympy_parser import standard_transformations,\
+implicit_multiplication_application
+from sympy import degree
 # node of a doubly linked list 
 from sympy import sympify
+from sympy import Symbol
 class node:
     def __init__(self, up=None, down=None, right=None, left=None, exp=None, CV=None):
         self.up = up
@@ -55,9 +60,6 @@ class node:
 #     cl.add(4);    
 #     #Displays all the nodes present in the list    
 #     cl.display();    
-from sympy.parsing.sympy_parser import parse_expr
-from sympy.parsing.sympy_parser import standard_transformations,\
-implicit_multiplication_application
 transformations = (standard_transformations +
     (implicit_multiplication_application,))
 P = "3 + x^2 + xyz(xy + y − z) + z^3(1 − 3x)"
@@ -65,5 +67,6 @@ P = P.replace('^','**')
 P = P.replace('−','-')
 regular_expression = parse_expr(P, transformations=transformations).args
 # regular_expression = (sympify(P, evaluate=False)).args
-
+for r in regular_expression:
+    print(degree(r,gen = Symbol('z')))
 print(regular_expression)
